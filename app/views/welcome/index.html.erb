@@ -1,5 +1,23 @@
 <div id="vue">
-  <h1>{{hello}}</h1>
+  <h1>{{title}}</h1>
+  <h3>ผลิตภัณฑ์ของเรา</h3>
+
+  <div class="card_container">
+    <div class="card" style="width: 20rem;" v-for="p in products">
+      <img class="card-img-top" src="image/green_market.png" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">{{p.name}}</h4>
+        <p class="card-text">
+          {{p.desc}}
+          <div class="desc_content">
+            <span>{{p.supplier}}</span>
+            <span class="right">ราคา {{p.cost}} บาท</span>
+          </div>
+        </p>
+        <a :href="'<%= new_order_path %>?id=' +p.id" class="btn btn-primary buy">เลือกสินค้า</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -9,7 +27,8 @@
   var vue = new Vue({
     el: '#vue',
     data: {
-      hello: 'world'
+      title: 'Green Market',
+      products: <%= Product.all.to_json.html_safe%>
     }
   });
 </script>

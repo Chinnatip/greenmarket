@@ -1,0 +1,18 @@
+<h2>สั่งซื้อสินค้า</h2>
+<br>
+<div class="row">
+  <div class="col-sm-6" style="padding: 0 40px;">
+    <img src="../image/green_market.png" alt="" style="width:100%; margin-bottom:26px;">
+    <h3><%= @product[:name] %></h3>
+    <p><%= @product[:desc] %></p>
+    <p>
+      <%= @product[:supplier]%>
+      <span style="float:right">ราคา <%= @product[:cost] %>บาท</span>
+    </p>
+    <%= link_to 'ย้อนกลับ', root_path , class: 'btn btn-danger' %>
+  </div>
+  <div class="col-sm-6" style="padding: 30px; border: 1px solid #e0e0e0; border-radius: 7px;">
+    <%= render 'form', order: @order %>
+    <!-- % = link_to 'Back', orders_path % -->
+  </div>
+</div>

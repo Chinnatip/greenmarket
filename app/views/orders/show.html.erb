@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <h1 class="display-4">ขอบคุณที่สนับสนุนเรา</h1>
+  <p class="lead">ทาง Green Market จะติดต่อกับผู้ผลิตสินค้าเเละนัดเเนะวัน-เวลารับสินค้ากับคุณผ่านช่องทางเบอร์โทรศัพท์ หรือส่งเป็นพัสดุไปรษณีย์ภายในระยะเวลาไม่เกิน2วันทำการ</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="<%= root_path %>" role="button">กลับสู่หน้าหลัก</a>
+  </p>
+</div>
+<div class="alert alert-success" role="alert">
+  <strong>สั่งซื้อเรียบร้อย!</strong> เราจะติดต่คุณเพื่อจัดส่งสินค้าภายในไม่เกิน2วันทำการ
+</div>
+
+<div class="order-container" style="text-align: center;margin:42px 0 60px;">
+  <h3>รายละเอียดการสั่งซื้อสินค้า</h3>
+  <br>
+  <p>
+    <strong>ผลิตภัณฑ์:</strong>
+    <%= @order.product %> จำนวน <%= @order.amount %> ชิ้น
+  </p>
+
+  <p>
+    <strong>ราคา:</strong>
+    <%= @order.cost %> บาท
+  </p>
+
+  <p>
+    <strong>ลูกค้า:</strong>
+    คุณ <%= @order.customer %>
+  </p>
+
+  <p>
+    <strong>เบอร์ติดต่อ:</strong>
+    <%= @order.tel %>
+  </p>
+
+  <p>
+    <strong>ที่อยู่:</strong>
+    <%= @order.address %>
+  </p>
+</div>
+<!--
+< % = link_to 'Edit', edit_order_path(@order) % > |
+< % = link_to 'Back', orders_path % > -->

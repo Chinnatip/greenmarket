@@ -1,0 +1,53 @@
+<div id="vue">
+  <%= form_for(order) do |f| %>
+    <% if order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+        <% order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <form class="" action="<%= orders_create_path %>" method="post">
+      <input type="hidden" name="product" v-model="product.id">
+      <input type="hidden" name="cost" v-model="total_cost()">
+      <label for="">ชื่อลูกค้า</label><br>
+      <input type="text"   name="customer" cols="40"  value="" v-model="customer" placeholder="กรุณากรอกชื่อ-สกุล" required><br>
+      <label for="">ที่อยู่</label><br>
+      <textarea name="address" rows="5" cols="40" placeholder="กรุณากรอกที่อยู่เพื่อจัดส่งสินค้า" required></textarea><br>
+      <label for="">เบอร์ติดต่อ</label><br>
+      <input type="tel" name="telephone" value="" required><br>
+      <label for="">จำนวนสินค้า</label><br>
+      <input type="number" name="amount" @change="alert('hello')" :value="amount" min="1" :max="product.stock" v-model="amount" required> ชิ้น (ชิ้นละ {{product.cost}} บาท เหลือ{{product.stock}}ชิ้น) <br>
+      <br>
+      <div style="margin-top:30px"></div>
+      <label for="" v-if="customer.length > 0">คุณ {{customer}}</label><br>
+      <label for="">ได้สั่งซื้อสินค้า {{product.name}} จำนวน {{amount}} ชิ้น</label><br>
+      <label for="">คิดเป็นเงิน <span style="font-size:28px; margin-top4px;">{{total_cost()}} บาท</span></label>
+      <input type="submit" value="สั่งซื้อสินค้า" class="btn btn-success" style="float:right">
+    </form>
+
+
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+  var vue = new Vue({
+    el: '#vue',
+    data: {
+      product: <%= Product.where(id: params[:id]).first.to_json.html_safe %>,
+      amount: 1 ,
+      customer: '',
+    },
+    methods: {
+      total_cost: function(){
+        return this.product.cost * this.amount;
+      }
+    }
+  });
+</script>

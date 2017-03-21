@@ -1,0 +1,31 @@
+<div>
+  <h1 style="display:inline-block">รายการสั่งซื้อสินค้า</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>สินค้า</th>
+      <th>ชื่อลูกค้า</th>
+      <th>จำนวน</th>
+      <th>ราคา</th>
+      <th>ที่อยู่จัดส่งสินค้า</th>
+      <th colspan="3">จัดการ</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= Product.find(order.product)[:name] %></td>
+        <td><%= order.customer %></td>
+        <td><%= order.amount %></td>
+        <td><%= order.cost %> บาท</td>
+        <td><%= order.address %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

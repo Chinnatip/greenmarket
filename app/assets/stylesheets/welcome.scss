@@ -1,3 +1,29 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card_container{
+  display: flex;
+  margin-top: 24px;
+}
+
+.card {
+  margin: 0 14px;
+  &:first-child{
+    margin-left: 0px;
+  }
+  &:last-child{
+    margin-right: 0px;
+  }
+  .card-img-top{
+    width:100%;
+  }
+  .desc_content{
+    margin-top: 22px;
+    color: #adadad;
+    font-weight: 200;
+  }
+  .buy,.right{
+    float: right;
+  }
+}
